@@ -1,0 +1,45 @@
+{
+  "name": "grunt-rework",
+  "description": "work on your css files with rework",
+  "version": "0.0.1",
+  "homepage": "https://github.com/jney/grunt-rework",
+  "author": {
+    "name": "Jean-Sébastien Ney",
+    "url": "http://github.com/jney/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jney/grunt-rework.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jney/grunt-rework/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/jney/grunt-rework/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "grunt.js",
+  "bin": "bin/grunt-rework",
+  "engines": {
+    "node": "*"
+  },
+  "scripts": {
+    "test": "grunt"
+  },
+  "dependencies": {
+    "grunt": "~0.4.0",
+    "rework": "*"
+  },
+  "devDependencies": {
+    "grunt-cli": "*",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-jshint": "0.1.1rc5",
+    "grunt-contrib-nodeunit": "*"
+  },
+  "keywords": [
+    "gruntplugin",
+    "rework"
+  ]
+}
