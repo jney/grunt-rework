@@ -18,9 +18,7 @@ Then specify what files to compress in your config:
 ```javascript
 grunt.initConfig({
   rework: {
-    src: [
-      'src/index.css'
-    ],
+    'dest/index.css': 'src/index.css',
     options: {
       toString: {compress: true},
       use: {
