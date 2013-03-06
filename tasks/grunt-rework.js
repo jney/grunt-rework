@@ -14,8 +14,6 @@ module.exports = function(grunt) {
   var _ = grunt.util._;
   var rework = require('rework');
 
-  var context = this;
-
   grunt.registerMultiTask('rework', 'rework your css files', function() {
     var options = this.options();
     options.toString = options.toString || {};
@@ -35,8 +33,12 @@ module.exports = function(grunt) {
         var srcCode = grunt.file.read(srcFile);
         var css = rework(srcCode).vendors(options.vendors);
 
-        _.pairs(options.use).forEach(function (e) {
-          css.use(eval(e[0] + '(' + JSON.stringify(e[1]) + ')'));
+        options.use.forEach(function (e) {
+          var fnName = e.shift();
+          var fnArgs = e.map(function (arg) {
+            return JSON.stringify(arg);
+          }).join(', ');
+          css.use(eval(fnName + '(' + fnArgs + ')'));
         });
 
         // generate file to string

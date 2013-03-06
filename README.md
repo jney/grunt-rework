@@ -21,10 +21,11 @@ grunt.initConfig({
     'dest/index.css': 'src/index.css',
     options: {
       toString: {compress: true},
-      use: {
-        'rework.keyframes': undefined,
-        'rework.prefix': 'border-radius'
-      },
+      use: [
+        ['rework.keyframes'],
+        ['rework.prefix', 'border-radius'],
+        ['rework.prefix', 'box-shadow']
+      ],
       vendors: ['-moz-', '-webkit-']
     }
   }
@@ -56,6 +57,7 @@ Return the string representation of the manipulated css. Optionally you may comp
 [rework]: https://github.com/visionmedia/rework
 
 ## Release History
+* 0.0.3 New `use` syntax
 * 0.0.2 Allow use of rework or own functions
 * 0.0.1 First Release
 

@@ -13,10 +13,11 @@ module.exports = function(grunt) {
       'test/expected/index.css': 'test/fixtures/index.css',
       options: {
         toString: {compress: true},
-        use: {
-          'rework.keyframes': undefined,
-          'rework.prefix': 'border-radius'
-        },
+        use: [
+          ['rework.keyframes'],
+          ['rework.prefix', 'border-radius'],
+          ['rework.prefix', 'box-shadow']
+        ],
         vendors: ['-moz-', '-webkit-']
       }
     },
