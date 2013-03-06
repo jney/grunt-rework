@@ -1,13 +1,13 @@
 [![build status](https://secure.travis-ci.org/jney/grunt-rework.png)](http://travis-ci.org/jney/grunt-rework)
 # grunt-rework
 
-[Grunt][grunt] plugin for html compression, using [rework][rework].
+[Grunt][grunt] plugin to [rework][rework] your css files.
 
 ## Getting Started
 
 Install this grunt plugin next to your project's [Gruntfile][getting_started] with: `npm install grunt-rework`
 
-Then add this line to your project's `grunt.js` gruntfile:
+Then add this line to your project's `gruntejs` gruntfile:
 
 ```javascript
 grunt.loadNpmTasks('grunt-rework');
@@ -22,8 +22,8 @@ grunt.initConfig({
     options: {
       toString: {compress: true},
       use: {
-        keyframes: undefined,
-        prefix: 'border-radius'
+        'rework.keyframes': undefined,
+        'rework.prefix': 'border-radius'
       },
       vendors: ['-moz-', '-webkit-']
     }
@@ -56,6 +56,7 @@ Return the string representation of the manipulated css. Optionally you may comp
 [rework]: https://github.com/visionmedia/rework
 
 ## Release History
+* 0.0.2 Allow use of rework or own functions
 * 0.0.1 First Release
 
 ## License

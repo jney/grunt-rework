@@ -6,11 +6,15 @@
  * Licensed under the MIT license.
  */
 
+/*jslint evil:true*/
+
 module.exports = function(grunt) {
   'use strict';
 
   var _ = grunt.util._;
   var rework = require('rework');
+
+  var context = this;
 
   grunt.registerMultiTask('rework', 'rework your css files', function() {
     var options = this.options();
@@ -32,16 +36,11 @@ module.exports = function(grunt) {
         var css = rework(srcCode).vendors(options.vendors);
 
         _.pairs(options.use).forEach(function (e) {
-          var key = e[0];
-          var val = e[1];
-          css.use(rework[key](val));
+          css.use(eval(e[0] + '(' + JSON.stringify(e[1]) + ')'));
         });
 
         // generate file to string
         var res = css.toString(options.toString);
-        console.log(res);
-        console.log(file.dest);
-        console.log(file);
 
         var dest = _.isFunction(options.processName) ?
           options.processName(srcFile, res) : file.dest;

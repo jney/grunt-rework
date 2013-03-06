@@ -14,8 +14,8 @@ module.exports = function(grunt) {
       options: {
         toString: {compress: true},
         use: {
-          keyframes: undefined,
-          prefix: 'border-radius'
+          'rework.keyframes': undefined,
+          'rework.prefix': 'border-radius'
         },
         vendors: ['-moz-', '-webkit-']
       }
