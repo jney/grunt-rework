@@ -26,13 +26,14 @@
     "node": "*"
   },
   "scripts": {
-    "test": "grunt"
+    "test": "./node_modules/grunt-cli/bin/grunt test"
   },
   "dependencies": {
     "rework": "0.13.2"
   },
   "devDependencies": {
     "grunt": "~0.4.0",
+    "grunt-cli": "*",
     "grunt-contrib-clean": "~0.4.0",
     "grunt-contrib-jshint": "0.1.1rc5",
     "grunt-contrib-nodeunit": "*"
