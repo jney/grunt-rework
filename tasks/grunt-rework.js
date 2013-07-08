@@ -34,6 +34,7 @@ module.exports = function(grunt) {
         var css = rework(srcCode).vendors(options.vendors);
 
         options.use.forEach(function (e) {
+          e = e.slice();
           var fnName = e.shift();
           var fnArgs = e.map(function (arg) {
             return JSON.stringify(arg);
