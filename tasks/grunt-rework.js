@@ -39,7 +39,12 @@ module.exports = function(grunt) {
           var fnArgs = e.map(function (arg) {
             return JSON.stringify(arg);
           }).join(', ');
-          css.use(eval(fnName + '(' + fnArgs + ')'));
+          if (typeof fnName === 'function') {
+            css.use(fnName(fnArgs));
+          }
+          else {
+            css.use(eval(fnName + '(' + fnArgs + ')'));
+          }
         });
 
         // generate file to string
