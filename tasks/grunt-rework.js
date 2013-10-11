@@ -36,9 +36,15 @@ module.exports = function(grunt) {
         options.use.forEach(function (e) {
           e = e.slice();
           var fnName = e.shift();
+          
+          if (typeof fnName === 'function') {
+            return css.use(fnName(e));
+          }
+          
           var fnArgs = e.map(function (arg) {
             return JSON.stringify(arg);
           }).join(', ');
+          
           css.use(eval(fnName + '(' + fnArgs + ')'));
         });
 
