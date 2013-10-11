@@ -29,7 +29,7 @@
     "test": "./node_modules/grunt-cli/bin/grunt test"
   },
   "dependencies": {
-    "rework": "0.13.2"
+    "rework": "0.18.1"
   },
   "devDependencies": {
     "grunt": "~0.4.0",
