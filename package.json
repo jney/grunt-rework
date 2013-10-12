@@ -1,7 +1,7 @@
 {
   "name": "grunt-rework",
   "description": "work on your css files with rework",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "homepage": "https://github.com/jney/grunt-rework",
   "author": {
     "name": "Jean-Sébastien Ney",
