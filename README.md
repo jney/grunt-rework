@@ -57,6 +57,8 @@ Return the string representation of the manipulated css. Optionally you may comp
 [rework]: https://github.com/visionmedia/rework
 
 ## Release History
+* 0.0.5 Update rework version.
+* 0.0.4
 * 0.0.3 New `use` syntax
 * 0.0.2 Allow use of rework or own functions
 * 0.0.1 First Release
