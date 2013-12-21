@@ -1,7 +1,7 @@
 {
   "name": "grunt-rework",
   "description": "work on your css files with rework",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "homepage": "https://github.com/jney/grunt-rework",
   "author": {
     "name": "Jean-Sébastien Ney",
@@ -29,7 +29,9 @@
     "test": "./node_modules/grunt-cli/bin/grunt test"
   },
   "dependencies": {
-    "rework": "0.18.1"
+    "rework": "~0.18.3",
+    "grunt-contrib-clean": "~0.4.1",
+    "grunt-contrib-jshint": "~0.1.1-rc5"
   },
   "devDependencies": {
     "grunt": "~0.4.0",
