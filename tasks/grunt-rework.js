@@ -34,6 +34,11 @@ module.exports = function(grunt) {
         var css = rework(srcCode).vendors(options.vendors);
 
         options.use.forEach(function (e) {
+
+          // If a function was passed, then just use that
+          if (typeof e === 'function')
+            return css.use(e)
+
           e = e.slice();
           var fnName = e.shift();
 
