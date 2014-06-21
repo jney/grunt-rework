@@ -1,24 +1,29 @@
 module.exports = function(grunt) {
   'use strict';
 
-  grunt.initConfig({
+  // Get a rework plugin
+  var rework_import = require('rework-import')({
+    path: 'test/fixtures/'
+  });
 
+  grunt.initConfig({
     nodeunit: {
-      tests: ["test/*_test.js"]
+      tests: ['test/*_test.js']
     },
     clean: {
-      output: ['test/expected']
+      output: ['test/result']
     },
     rework: {
-      'test/expected/index.css': 'test/fixtures/index.css',
+      css: {
+        files: {
+          'test/result/index.css': 'test/fixtures/index.css'
+        }
+      },
       options: {
-        toString: {compress: true},
         use: [
-          ['rework.keyframes'],
-          ['rework.prefix', 'border-radius'],
-          ['rework.prefix', 'box-shadow']
+          rework_import
         ],
-        vendors: ['-moz-', '-webkit-']
+        toString: {compress: true}
       }
     },
     jshint: {
@@ -38,10 +43,8 @@ module.exports = function(grunt) {
         undef: true,
         boss: true,
         eqnull: true,
-        node: true,
-        es5: true
-      },
-      globals: {}
+        node: true
+      }
     }
   });
 
@@ -49,6 +52,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
-  grunt.registerTask('test', ['clean', 'rework', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'rework:css', 'nodeunit']);
   grunt.registerTask('default', ['jshint', 'test']);
 };

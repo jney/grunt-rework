@@ -6,8 +6,6 @@
  * Licensed under the MIT license.
  */
 
-/*jslint evil:true*/
-
 module.exports = function(grunt) {
   'use strict';
 
@@ -18,7 +16,6 @@ module.exports = function(grunt) {
     var options = this.options();
     options.toString = options.toString || {};
     options.use = options.use || [];
-    options.vendors = options.vendors || [];
 
     grunt.verbose.writeflags(options, 'Options');
 
@@ -26,42 +23,30 @@ module.exports = function(grunt) {
     var done = this.async();
 
     async.forEach(this.files, function(file, next) {
-      var src = _.isFunction(file.src) ? file.src() : file.src;
-      var srcFiles = grunt.file.expand(src);
+      var srcFiles = grunt.file.expand(file.src);
 
-      async.forEach(srcFiles, function(srcFile, nextF) {
+      async.forEach(srcFiles, function(srcFile, nextFile) {
         var srcCode = grunt.file.read(srcFile);
-        var css = rework(srcCode).vendors(options.vendors);
+        var css = rework(srcCode);
 
-        options.use.forEach(function (e) {
-
-          // If a function was passed, then just use that
-          if (typeof e === 'function'){
-            return css.use(e);
+        options.use.forEach(function(plugin) {
+          if (_.isFunction(plugin)){
+            return css.use(plugin);
           }
-
-          e = e.slice();
-          var fnName = e.shift();
-
-          if (typeof fnName === 'function') {
-            return css.use(fnName.apply(fnName, e));
+          else {
+            grunt.log.error('Rework plugins must be functions');
           }
-
-          var fnArgs = e.map(function (arg) {
-            return JSON.stringify(arg);
-          }).join(', ');
-
-          css.use(eval(fnName + '(' + fnArgs + ')'));
         });
 
-        // generate file to string
         var res = css.toString(options.toString);
 
-        var dest = _.isFunction(options.processName) ?
-          options.processName(srcFile, res) : file.dest;
+        var dest = _.isFunction(options.processName) ? options.processName(srcFile, res) : file.dest;
+
         grunt.file.write(dest, res);
+
         grunt.log.writeln('File "' + dest + '" created.');
-        nextF();
+
+        nextFile();
       }, next);
     }, done);
   });
