@@ -1,67 +1,84 @@
-[![build status](https://secure.travis-ci.org/jney/grunt-rework.png)](http://travis-ci.org/jney/grunt-rework)
-# grunt-rework
+# grunt-rework v0.1.0 [![build status][status-badge]][travis]
 
-[Grunt][grunt] plugin to [rework][rework] your css files.
+> [rework][rework] your css files with [Grunt][grunt].
 
 ## Getting Started
 
-Install this grunt plugin next to your project's [Gruntfile][getting_started] with: `npm install grunt-rework`
+First, [setup your project with grunt][getting_started].
 
-Then add this line to your project's `gruntejs` gruntfile:
+Then, install the `grunt-rework` plugin:
+
+```
+npm install --save-dev grunt-rework
+```
+
+Add this line to your Gruntfile:
 
 ```javascript
 grunt.loadNpmTasks('grunt-rework');
 ```
 
-Then specify what files to compress in your config:
+Then specify what files to rework in your Grunt config:
 
 ```javascript
+var rework_import = require('rework-import');
+
 grunt.initConfig({
   rework: {
     'dest/index.css': 'src/index.css',
     options: {
       toString: {compress: true},
       use: [
-        ['rework.keyframes'],
-        ['rework.prefix', 'border-radius'],
-        ['rework.prefix', 'box-shadow']
-      ],
-      vendors: ['-moz-', '-webkit-']
+        rework_import
+      ]
+    },
+    prod: {
+      options: {
+        toString: {
+          compress: true
+        }
+      },
+      files: {
+       'dest/index.css': 'src/index.css',
+      }
     }
   }
 });
 ```
-### Options
 
-#### rework options
+## rework task
 
-##### vendors(prefixes)
+#### Options
 
-Define vendor prefixes that plugins may utilize.
+##### use
+Type: `Array`
+Default: `[]`
 
-##### use(fn)
+An array of rework plugin functions to use.
 
-Use the given plugin fn.
+##### toString
+Type: `Object`
+Default: `{}`
 
-##### toString(options)
+Options to pass to rework's `toString` method.
 
-Return the string representation of the manipulated css. Optionally you may compress the output with .toString({ compress: true })
-
-#### input/output files
-
-`src` source string
-`processName` can help you formating the output instead of using `dest`
-
-[grunt]: https://github.com/gruntjs/grunt
-[getting_started]: http://gruntjs.com/getting-started
-[rework]: https://github.com/visionmedia/rework
 
 ## Release History
-* 0.0.5 Update rework version.
+
+* 0.1.0 Update to rework 1.0, remove vendors option, remove support for built-in rework plugin
+* 0.0.5 Update rework version
 * 0.0.3 New `use` syntax
 * 0.0.2 Allow use of rework or own functions
 * 0.0.1 First Release
 
+
 ## License
 Copyright (c) 2013 Jean-Sébastien Ney
 Licensed under the MIT license.
+
+
+[grunt]: https://github.com/gruntjs/grunt
+[getting_started]: http://gruntjs.com/getting-started
+[rework]: https://github.com/visionmedia/rework
+[travis]: http://travis-ci.org/jney/grunt-rework
+[status-badge]: https://secure.travis-ci.org/jney/grunt-rework.png
