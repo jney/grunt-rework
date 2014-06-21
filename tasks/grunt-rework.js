@@ -23,8 +23,7 @@ module.exports = function(grunt) {
     var done = this.async();
 
     async.forEach(this.files, function(file, next) {
-      var src = _.isFunction(file.src) ? file.src() : file.src;
-      var srcFiles = grunt.file.expand(src);
+      var srcFiles = grunt.file.expand(file.src);
 
       async.forEach(srcFiles, function(srcFile, nextFile) {
         var srcCode = grunt.file.read(srcFile);
