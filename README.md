@@ -62,6 +62,29 @@ Default: `{}`
 
 Options to pass to rework's `toString` method.
 
+If `toString.sourcemapAsObject` is set to `true`, you can use these additional options:
+
+#### toString.sourceMapFilename
+Type: `String`
+
+Default: none
+
+Write the source map to a separate file with the given filename. If not specified the destination file path will be used with a `.map` suffix.
+
+#### toString.sourceMapURL
+Type: `String`
+
+Default: none
+
+Override the default url that points to the sourcemap from the compiled css file.
+
+#### toString.sourceMapRootpath
+Type: `String`
+
+Default: none
+
+Adds this path onto the less file paths in the source map.
+
 
 ## Release History
 
